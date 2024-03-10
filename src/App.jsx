@@ -14,7 +14,7 @@ function App() {
   // Project
    const [projectList, updateProjectList] = useState([
     {id: 0, title: 'first project', description: 'description here', dueDate: '2024-11-01', tasks: ['my task', 'your task']},
-    {id: 1, title: 'second project', description: 'description here', dueDate: '2024-05-01', tasks: ['task 1', 'task 2']}
+    {id: 1, title: 'second project', description: 'description over there', dueDate: '2024-05-01'}
   ])
 
   // let selectedProjectInfo = []
@@ -52,8 +52,9 @@ function App() {
   }
 
   function handleProjectSelection(projectId){
-    //selectedProjectInfo = projectList[projectId]    
+    //update selectedProjectInfo variable
     updateSelectedProjectInfo( projectList[projectId] )
+
     // display appropriate page
     handlePageChange('Project')
 
@@ -62,9 +63,12 @@ function App() {
     // make button appear selected
 
     // Need to pass project info from array
-    //projectPageRef.current.updateProjectInfo(selectedProjectInfo)
+    if(projectPageRef){
+      projectPageRef.current.updateProjectInfo(projectList[projectId])
+    }
+    
 
-    console.log(selectedProjectInfo)
+    //console.log(selectedProjectInfo)
   }
 
   // useEffect(() => {
