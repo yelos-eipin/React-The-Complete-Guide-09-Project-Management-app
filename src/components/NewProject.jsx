@@ -13,7 +13,7 @@ function handleSave(){
 
    //insert values into a new array that will be passed to function on App component
    let newTitleArr = [
-    {'title': title, 'description': description, 'dueDate': dueDate}
+    {'title': title, 'description': description, 'dueDate': dueDate, 'tasks': []}
    ]
 
    updateProjectListFunc(newTitleArr)
