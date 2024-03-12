@@ -1,15 +1,24 @@
 import { useRef } from "react"
+import ModalMessage from "./ModalMessage"
 
 export default function newProject({pageChangeFunc, updateProjectListFunc}){
     const refTitle = useRef()
     const refDescription = useRef()
     const refDueDate = useRef()
+    const dialog = useRef()
 
 function handleSave(){
    // Fetch values from text fields
    let title = refTitle.current.value
    let description = refDescription.current.value
    let dueDate = refDueDate.current.value
+
+   // validate inputs
+   // show error if empty fields
+   if(title.length < 3 || description.length < 3 || dueDate === ''){
+      dialog.current.open()
+      return
+   }
 
    //insert values into a new array that will be passed to function on App component
    let newTitleArr = [
@@ -19,6 +28,8 @@ function handleSave(){
    updateProjectListFunc(newTitleArr)
 }    
 return (    
+    <>
+    <ModalMessage ref={dialog}/>
     <div className="mt-24 w-2/3">
       <menu className="flex items-center justify-end gap-4 my-4"> 
         <button className="text-stone-700 hover:text-red-500" onClick={() => pageChangeFunc('NoProjectSelected')} >Cancel</button>
@@ -33,6 +44,7 @@ return (
         <input type="date" label="Due Date" ref={refDueDate} />
       </div>
     </div>
+    </>
 )
 
 }

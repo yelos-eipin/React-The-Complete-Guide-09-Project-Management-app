@@ -7,7 +7,6 @@ import SideBar from './components/SideBar';
 function App() {
   const [currentPage, setcurrentPage] = useState('NoProjectSelected')
   const projectPageRef = useRef()
-  const [isRendered, setIsRendered] = useState(false);
   // Possible values for currentPage
   // NewProject
   // NoProjectSelected
